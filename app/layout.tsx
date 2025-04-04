@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
+import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,10 +18,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${montserrat.className} antialiased`}>
+        <nav className="bg-black py-4 md:px-10 px-4">
+          <Link href='/' className="flex items-center gap-1">
+            <Image
+              src="/chefhat.svg"
+              alt="chef hat svg"
+              width={40}
+              height={40}
+            />
+            <span className="text-2xl font-bold text-white">Dishify</span>
+          </Link>
+        </nav>
         {children}
+        <footer className="bg-black py-6 text-center">
+          <span className="text-white">
+            &copy; 2025 Dounhuward B. Caparas <br />
+            All Rights Reserved.
+          </span>
+        </footer>
       </body>
     </html>
   );
